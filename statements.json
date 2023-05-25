@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "645f7fe835c09add2fde7c36",
+    "time": 1667897135,
+    "description": "Сільпо",
+    "amount": 2900,
+    "owner": "645d427ab28c47388f478978"
+  },
+  {
+    "_id": "645f7fe835c09add2fde7c36",
+    "time": 1636361135,
+    "description": "Кафешка",
+    "amount": 2900,
+    "owner": "645d427ab28c47388f478978"
+  },
+  {
+    "_id": "645f7fe835c09add2fde7cd36",
+    "time": 1636361135,
+    "description": "Кафешка",
+    "amount": 2900,
+    "owner": "645d427ab28c47388f478978"
+  },
+  {
+    "_id": "645f8372badcd6083220e895",
+    "time": 1604825135,
+    "description": "Сільпо",
+    "amount": 940,
+    "owner": "645d427ab28c47388f478978"
+  },
+  {
+    "_id": "645f8382badcd6083220e89b",
+    "time": 1570434335,
+    "description": "Новус",
+    "amount": -3941,
+    "owner": "645d427ab28c47388f478978"
+  },
+  {
+    "_id": "645f9488badcd6083220e8a4",
+    "time": 1684053935,
+    "description": "Hp and Sicke",
+    "amount": 94340,
+    "owner": "645d427ab28c47388f478978"
+  }
+]
