@@ -9,6 +9,15 @@ const nextConfig = {
     config.plugins.push(new webpack.EnvironmentPlugin(myEnv));
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/login",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

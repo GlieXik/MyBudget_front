@@ -22,5 +22,5 @@ export default async function middleware(req) {
   }
 }
 export const config = {
-  matcher: ["/account/:path*", "/"],
+  matcher: ["/account/:path*"],
 };
