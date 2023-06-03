@@ -38,12 +38,12 @@ export default function BankCards() {
       </div>
       {/* ??2 */}
       <div
-        className={`fixed h-1/2 rounded-t-lg inset-x-0 bottom-0 z-40 bg-white overflow-hidden shadow-xl transform transition-all w-full ${
+        className={`fixed h-1/2 rounded-t-lg inset-x-0 bottom-0 z-40 bg-white dark:bg-gray-700 overflow-hidden shadow-xl transform transition-all w-full ${
           isOpen ? "" : "translate-y-full"
         }`}
       >
         <div className=" p-4">
-          <p>This is the content of the drawer.</p>
+          <p>Beta test.</p>
         </div>
         <div className="absolute top-2 right-2" onClick={closeModal}>
           <AiOutlineCloseCircle size={"40"} />

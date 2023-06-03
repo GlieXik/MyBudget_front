@@ -1,24 +1,19 @@
 "use client";
-// import { store } from "@/redux/store";
-// import { setStartupPayments } from "@/redux/slices/paymentsSlice";
 
 import BankCards from "@/components/BankCards";
 
 import CardWrapper from "@/components/CardWrapper";
 import FilterAll from "@/components/FilterAll";
 import { useDispatch } from "react-redux";
-import { useGetPaymentsQuery } from "../api/apiSlice";
 import { useEffect } from "react";
 import { setStartupPayments } from "@/redux/slices/paymentsSlice";
-import { useRouter } from "next/navigation";
-import Loader from "@/components/Loader";
-import Navigation from "@/components/Navigation";
 
-// import Preloader from "@/components/Preloader";
+import Loader from "@/components/Loader";
+import { useGetPaymentsQuery } from "@/app/api/apiSlice";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const router = useRouter();
+
   const {
     data: payments,
     isLoading,
@@ -29,12 +24,11 @@ export default function Home() {
 
   useEffect(() => {
     if (isSuccess) {
+      console.log(payments);
       dispatch(setStartupPayments(payments));
     }
-    if (isError) {
-      router.push("/login");
-    }
-  }, [dispatch, payments, isSuccess, isError, router]);
+  }, [dispatch, isSuccess, payments]);
+
   return (
     <>
       {isLoading ? (

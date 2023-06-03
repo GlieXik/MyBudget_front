@@ -13,16 +13,28 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state, action) => {
-      const { name, tokens } = action.payload;
+      const { name } = action.payload;
       state.user = name;
-      state.token = tokens.accessToken;
-      cookies.set("accessToken", tokens.accessToken);
+      state.token = action.payload.tokens.accessToken;
+      setAccessTokenCookie(action.payload.tokens.accessToken);
     },
     logOut: (state, action) => {
+      console.log(state);
       state.user = null;
       state.token = null;
+      removeAccessTokenCookie();
     },
   },
 });
 export const { setCredentials, logOut } = authSlice.actions;
 export const authReducer = authSlice.reducer;
+
+export const setAccessTokenCookie = (accessToken) => {
+  console.log("set token", accessToken);
+  cookies.set("accessToken", accessToken);
+};
+
+export const removeAccessTokenCookie = () => {
+  console.log("remove token");
+  cookies.remove("accessToken");
+};

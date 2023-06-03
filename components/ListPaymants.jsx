@@ -1,6 +1,10 @@
 import { formattedToday } from "@/utils/formattedToday";
 import ItemPaymants from "./ItemPaymants";
+import SwipeToDelete from "react-swipe-to-delete-ios";
+import { useDeletePaymentMutation } from "@/app/api/apiSlice";
 export default function ListPaymants({ paymants }) {
+  const [deletePayment] = useDeletePaymentMutation();
+
   const groups = paymants.reduce((acc, cur) => {
     const date = new Date(cur.time * 1000);
     const formattedDate = date.toLocaleDateString("en-US", {
@@ -30,7 +34,22 @@ export default function ListPaymants({ paymants }) {
             {formattedToday === group.time ? "Today" : group.time}
           </p>
           {group.items.map((item, index) => (
-            <ItemPaymants key={index} paymant={item} />
+            <SwipeToDelete
+              key={index}
+              height={52}
+              onDeleteConfirm={async (onSuccess, onCancel) => {
+                if (
+                  window.confirm("Do you really want to delete this item ?")
+                ) {
+                  onSuccess();
+                  await deletePayment(item._id).unwrap();
+                } else {
+                  onCancel();
+                }
+              }}
+            >
+              <ItemPaymants paymant={item} />
+            </SwipeToDelete>
           ))}
         </ul>
       ))}

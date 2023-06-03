@@ -1,14 +1,26 @@
 import { NextResponse } from "next/server";
 
-export default function middleware(req) {
+export default async function middleware(req) {
   const jwt = req.cookies.get("accessToken")?.value;
-  const url = req.nextUrl.clone();
 
-  if (url.pathname === "/") {
-    if (!jwt) {
-      url.pathname = "/login";
-      return NextResponse.redirect(url);
+  try {
+    const response = await fetch(
+      "https://my-budget-back-tau.vercel.app/api/users/current",
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      return NextResponse.next();
+    } else {
+      return NextResponse.redirect(new URL("/login", req.url));
     }
+  } catch (error) {
+    console.log(error);
   }
-  return NextResponse.next();
 }
+export const config = {
+  matcher: ["/account/:path*", "/"],
+};

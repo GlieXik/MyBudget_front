@@ -6,11 +6,12 @@ import { setCredentials } from "@/redux/slices/authSlice";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useLoginMutation } from "@/app/api/apiSlice";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [errMsg, setErrMsg] = useState("");
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [login, { data, isLoading, isSuccess }] = useLoginMutation();
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -22,8 +23,9 @@ export default function LoginForm() {
       const password = form.elements.password.value;
 
       const userData = await login({ email, password }).unwrap();
-      dispatch(setCredentials({ ...userData, email }));
-      router.push("/");
+      console.log("data", userData);
+      dispatch(setCredentials(userData));
+      router.push("/account");
     } catch (err) {
       if (!err?.status) {
         setErrMsg("No Server Response");
@@ -81,35 +83,33 @@ export default function LoginForm() {
                 </div>
 
                 {errMsg && <div className="mt-3 text-red-500">{errMsg}</div>}
-                {isLoading ? (
-                  <button
-                    type="submit"
-                    className="w-full cursor-not-allowed text-white bg-primary-400  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                    disabled
-                  >
+
+                <button
+                  type="submit"
+                  className={
+                    isLoading
+                      ? "w-full cursor-not-allowed text-white bg-primary-400  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                      : "w-full  text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  }
+                  role="status"
+                  disabled={isLoading}
+                >
+                  {isLoading && (
                     <div
                       className="inline-block mr-2 h-3 w-3 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                       role="status"
                     ></div>
-                    Sign in
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    className="w-full  text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                  >
-                    Sign in
-                  </button>
-                )}
-
+                  )}
+                  Sign in
+                </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    href="/register"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Sign up
-                  </a>
+                  </Link>
                 </p>
               </form>
             </div>

@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const paymentsSlice = createSlice({
-  name: "filters",
+  name: "payments",
   initialState,
   reducers: {
     setStartupPayments(state, action) {

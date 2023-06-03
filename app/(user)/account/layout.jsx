@@ -1,11 +1,6 @@
-import Providers from "@/components/Provider";
-
 import { Inter } from "next/font/google";
-import dotenv from "dotenv";
-import Navigation from "@/components/Navigation";
 
-dotenv.config();
-const inter = Inter({ subsets: ["latin"] });
+import Navigation from "@/components/Navigation";
 
 export const metadata = {
   title: "Budgete",

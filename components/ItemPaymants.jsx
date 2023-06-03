@@ -21,7 +21,10 @@ export default function ItemPaymants({ paymant }) {
     }
   };
   return (
-    <li key={paymant._id} className="flex  justify-between mt-2">
+    <li
+      key={paymant._id}
+      className="flex  justify-between  bg-white dark:bg-gray-800"
+    >
       <div className="flex gap-3 items-center">
         {paymant.amount > 0 ? (
           <BsFillArrowUpCircleFill

@@ -20,3 +20,8 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-start-rgb));
 }
+input,
+textarea {
+  touch-action: manipulation;
+  user-scalable: no;
+}

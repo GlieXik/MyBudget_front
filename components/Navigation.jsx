@@ -1,8 +1,8 @@
 "use client";
 import { nanoid } from "@reduxjs/toolkit";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+
 import { AiFillHome, AiFillPlusCircle } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 
@@ -11,17 +11,17 @@ export default function Navigation() {
     {
       icon: AiFillHome,
       name: "Home",
-      path: "/",
+      path: "/account",
     },
     {
       icon: AiFillPlusCircle,
       name: "Add payments",
-      path: "/add",
+      path: "/account/add",
     },
     {
       icon: FaUserAlt,
       name: "User",
-      path: "/user",
+      path: "/account/user",
     },
   ];
   const navLength = nav.length;
