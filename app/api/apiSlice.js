@@ -7,7 +7,6 @@ const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NODE_SERVER + "/api",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token || cookies.get("accessToken");
-    console.log("🚀 ~ file: apiSlice.js:10 ~ token:", token);
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
     }
@@ -38,13 +37,14 @@ export const apiSlice = createApi({
     }),
     getPayments: builder.query({
       query: () => "/payments",
-      providesTags: (result) =>
-        result
+      providesTags: (result) => {
+        return result
           ? [
               ...result.map(({ id }) => ({ type: "Payments", id })),
               { type: "Payments", id: "LIST" },
             ]
-          : [{ type: "Payments", id: "LIST" }],
+          : [{ type: "Payments", id: "LIST" }];
+      },
     }),
     addPayment: builder.mutation({
       query: (credentials) => ({

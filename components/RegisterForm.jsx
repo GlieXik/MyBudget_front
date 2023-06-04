@@ -14,7 +14,6 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   const router = useRouter();
   const handleSubmit = async (values) => {
-    console.log(values);
     if (values.password !== values.confirm_password) {
       return setErrMsg("Password not been like password");
     }

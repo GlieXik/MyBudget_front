@@ -26,6 +26,10 @@ export default function ListPaymants({ paymants }) {
 
   formattedGroups.sort((a, b) => new Date(b.time) - new Date(a.time));
 
+  formattedGroups.forEach((obj) => {
+    obj.items.sort((a, b) => b.time - a.time);
+  });
+
   return (
     <>
       {formattedGroups.map((group) => (

@@ -1,7 +1,9 @@
 "use client";
 import CardWrapper from "@/components/CardWrapper";
-import { resetAll } from "@/redux/selectors";
+
 import { logOut, removeAccessTokenCookie } from "@/redux/slices/authSlice";
+import { resetPayments } from "@/redux/slices/paymentsSlice";
+import { resetStore } from "@/redux/store";
 import { useRouter } from "next/navigation";
 import { IoExitOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
@@ -9,8 +11,8 @@ export default function User() {
   const dispatch = useDispatch();
   const router = useRouter();
   const handleLogout = async () => {
-    await dispatch(logOut());
-    await removeAccessTokenCookie();
+    dispatch(logOut());
+    removeAccessTokenCookie();
     router.push("/login");
   };
   return (

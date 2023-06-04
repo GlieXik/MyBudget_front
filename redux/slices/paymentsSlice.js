@@ -11,8 +11,11 @@ const paymentsSlice = createSlice({
     setStartupPayments(state, action) {
       state.startupPayments = action.payload;
     },
+    resetPayments(state) {
+      state.startupPayments = [];
+    },
   },
 });
 
-export const { setStartupPayments } = paymentsSlice.actions;
+export const { setStartupPayments, resetPayments } = paymentsSlice.actions;
 export const paymentsReducer = paymentsSlice.reducer;

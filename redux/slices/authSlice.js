@@ -19,7 +19,6 @@ const authSlice = createSlice({
       setAccessTokenCookie(action.payload.tokens.accessToken);
     },
     logOut: (state, action) => {
-      console.log(state);
       state.user = null;
       state.token = null;
       removeAccessTokenCookie();
@@ -30,11 +29,9 @@ export const { setCredentials, logOut } = authSlice.actions;
 export const authReducer = authSlice.reducer;
 
 export const setAccessTokenCookie = (accessToken) => {
-  console.log("set token", accessToken);
   cookies.set("accessToken", accessToken);
 };
 
 export const removeAccessTokenCookie = () => {
-  console.log("remove token");
   cookies.remove("accessToken");
 };

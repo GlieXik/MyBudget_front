@@ -20,8 +20,6 @@ export const selectVisiblePayments = createSelector(
 export const selectPaymentsCount = createSelector(
   [selectAllPayments],
   (payments) => {
-    console.log("Calculating task count");
-
     return payments.reduce((acc, payment) => {
       acc += payment.amount;
       return acc;

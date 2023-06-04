@@ -8,8 +8,8 @@ export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     filter: filterReducer,
-    payments: paymentsReducer,
     auth: authReducer,
+    payments: paymentsReducer,
   },
 
   middleware(getDefaultMiddleware) {

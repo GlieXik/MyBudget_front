@@ -24,11 +24,6 @@ export default function Add() {
         time: unixTime,
         amount: checkMinus,
       };
-
-      console.log(
-        "🚀 ~ file: page.jsx:24 ~ onSubmit: ~ updatedObject:",
-        updatedObject
-      );
       await addPayment(updatedObject).unwrap();
       router.push("/account");
     },
@@ -77,6 +72,7 @@ export default function Add() {
             id="amount"
             onChange={formik.handleChange}
             value={formik.values.amount}
+            required={true}
             className={`text-6xl w-full ${
               filterGroup === 1 ? " bg-green-400" : "bg-red-400"
             } `}

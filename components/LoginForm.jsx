@@ -23,7 +23,7 @@ export default function LoginForm() {
       const password = form.elements.password.value;
 
       const userData = await login({ email, password }).unwrap();
-      console.log("data", userData);
+
       dispatch(setCredentials(userData));
       router.push("/account");
     } catch (err) {

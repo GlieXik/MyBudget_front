@@ -20,14 +20,15 @@ export default function Home() {
     isSuccess,
     isError,
     error,
+    refetch,
   } = useGetPaymentsQuery();
 
   useEffect(() => {
+    refetch();
     if (isSuccess) {
-      console.log(payments);
       dispatch(setStartupPayments(payments));
     }
-  }, [dispatch, isSuccess, payments]);
+  }, [dispatch, isSuccess, payments, refetch]);
 
   return (
     <>
